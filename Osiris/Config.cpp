@@ -215,7 +215,7 @@ static void from_json(const json& j, Snapline& s)
 
 static void from_json(const json& j, Box& b)
 {
-    from_json(j, static_cast<ColorToggleThicknessRounding&>(b));
+    from_json(j, static_cast<ColorToggleRounding&>(b));
 
     read(j, "Type", b.type);
     read(j, "Scale", b.scale);
@@ -270,6 +270,7 @@ static void from_json(const json& j, Player& p)
     read<value_t::object>(j, "Flash Duration", p.flashDuration);
     read(j, "Audible Only", p.audibleOnly);
     read(j, "Spotted Only", p.spottedOnly);
+    read(j, "Health Bar", p.healthBar);
     read<value_t::object>(j, "Skeleton", p.skeleton);
     read<value_t::object>(j, "Head Box", p.headBox);
 }
@@ -677,7 +678,7 @@ static void to_json(json& j, const Snapline& o, const Snapline& dummy = {})
 
 static void to_json(json& j, const Box& o, const Box& dummy = {})
 {
-    to_json(j, static_cast<const ColorToggleThicknessRounding&>(o), dummy);
+    to_json(j, static_cast<const ColorToggleRounding&>(o), dummy);
     WRITE("Type", type);
     WRITE("Scale", scale);
     WRITE("Fill", fill);
@@ -700,6 +701,7 @@ static void to_json(json& j, const Player& o, const Player& dummy = {})
     WRITE("Flash Duration", flashDuration);
     WRITE("Audible Only", audibleOnly);
     WRITE("Spotted Only", spottedOnly);
+    WRITE("Health Bar", healthBar);
     WRITE("Skeleton", skeleton);
     WRITE("Head Box", headBox);
 }
